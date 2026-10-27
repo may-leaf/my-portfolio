@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg: #0b0b0c;
+  --color-surface: #141416;
+  --color-surface-alt: #1c1c1f;
+  --color-surface-raised: #26262b;
+  --color-border: #2f2f35;
+  --color-text: #f2f2ee;
+  --color-muted: #9a9aa2;
+  --color-primary: #dfff00;
+  --color-primary-hover: #c6e600;
+  --color-primary-ink: #0b0b0c;
+  --color-primary-soft: rgba(223, 255, 0, 0.14);
+  --color-danger: #ff5a4f;
+
+  --font-heading: var(--font-space-grotesk), var(--font-noto-sans-jp), sans-serif;
+  --font-sans: var(--font-inter), var(--font-noto-sans-jp), sans-serif;
+  --font-jp: var(--font-noto-sans-jp), sans-serif;
+
+  --radius-input: 8px;
+  --radius-image: 12px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+
+  --shadow-glow: 0 8px 24px rgba(223, 255, 0, 0.12);
+  --shadow-avatar: 0 0 32px rgba(223, 255, 0, 0.18);
+  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.6);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background-color: var(--color-bg);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-primary-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
