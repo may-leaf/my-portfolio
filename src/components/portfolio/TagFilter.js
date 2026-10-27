@@ -8,7 +8,7 @@ function getTagHref(tag) {
   return tag === "All" ? "/portfolio" : `/portfolio?tag=${encodeURIComponent(tag)}`;
 }
 
-export default function TagFilter({ activeTag }) {
+export default function TagFilter({ activeTag, tags }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -31,7 +31,7 @@ export default function TagFilter({ activeTag }) {
       }`}
       role="group"
     >
-      {portfolioPage.tagFilters.map((tag) => {
+      {tags.map((tag) => {
         const active = tag === activeTag;
 
         return (

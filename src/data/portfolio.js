@@ -4,7 +4,8 @@ export const portfolioPage = {
   intro:
     "A collection of anime and manga illustrations, character work and fan art.",
   pageSize: 20,
-  tagFilters: ["All", "Character", "Fanart", "Original"],
+  filtersLabel: "Filter artworks by tag",
+  tagSuggestions: ["Character", "Fanart", "Original"],
   emptyState: {
     title: "No artworks here yet",
     body: "New illustrations will appear here as soon as they are published. Check back soon.",

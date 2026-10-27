@@ -5,7 +5,7 @@ import PortfolioEmptyState from "@/components/portfolio/PortfolioEmptyState";
 import PortfolioSkeleton from "@/components/portfolio/PortfolioSkeleton";
 import TagFilter from "@/components/portfolio/TagFilter";
 import { portfolioPage } from "@/data/portfolio";
-import { fetchArtworks } from "@/lib/artworks";
+import { fetchArtworks, fetchArtworkTags } from "@/lib/artworks";
 
 export const metadata = {
   title: "Artworks",
@@ -22,9 +22,9 @@ export const metadata = {
 async function PortfolioContent({ searchParams }) {
   const params = await searchParams;
   const requestedTag = Array.isArray(params.tag) ? params.tag[0] : params.tag;
+  const { tags } = await fetchArtworkTags();
   const activeTag =
-    typeof requestedTag === "string" &&
-    portfolioPage.tagFilters.includes(requestedTag)
+    typeof requestedTag === "string" && tags.includes(requestedTag)
       ? requestedTag
       : "All";
 
@@ -35,7 +35,7 @@ async function PortfolioContent({ searchParams }) {
 
   return (
     <>
-      <TagFilter activeTag={activeTag} />
+      <TagFilter activeTag={activeTag} tags={tags} />
 
       <div className="mt-8">
         {error ? (
