@@ -10,11 +10,11 @@ import { fetchArtworks, fetchArtworkTags } from "@/lib/artworks";
 export const metadata = {
   title: "Artworks",
   description:
-    "Browse anime and manga illustrations, character work and fan art by Tuna (まぐろ寿司).",
+    "draw.",
   openGraph: {
     title: "Artworks | Tuna (まぐろ寿司)",
     description:
-      "Browse anime and manga illustrations, character work and fan art by Tuna (まぐろ寿司).",
+      "draw.",
     type: "website",
   },
 };

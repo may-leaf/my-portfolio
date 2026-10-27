@@ -89,9 +89,9 @@ export default function Preloader() {
 
       <div className="relative max-w-4xl" data-preloader-copy>
         <p className="font-heading text-[clamp(2.25rem,7vw,5rem)] font-bold uppercase leading-[0.95] tracking-[-0.01em]">
-          Over the archive
+          i dont draw anymore
           <br />
-          <span className="text-primary">Into the art</span>
+          <span className="text-primary">but im still an artist</span>
         </p>
 
         <div className="mt-8 h-px w-full overflow-hidden bg-border">

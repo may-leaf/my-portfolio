@@ -1,0 +1,66 @@
+﻿import {
+  Chakra_Petch,
+  Inter,
+  Noto_Sans_JP,
+  Space_Mono,
+} from "next/font/google";
+import "./globals.css";
+
+const chakraPetch = Chakra_Petch({
+  variable: "--font-chakra-petch",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const notoSansJp = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  preload: false,
+  display: "swap",
+});
+
+export const metadata = {
+  title: {
+    default: "Tuna (ã¾ãã‚å¯¿å¸) â€” Anime & Manga Illustrator",
+    template: "%s | Tuna (ã¾ãã‚å¯¿å¸)",
+  },
+  description:
+    "Portfolio and commission information for Tuna (ã¾ãã‚å¯¿å¸), an anime and manga illustrator from Indonesia.",
+  openGraph: {
+    title: "Tuna (ã¾ãã‚å¯¿å¸) â€” Anime & Manga Illustrator",
+    description:
+      "Portfolio and commission information for Tuna (ã¾ãã‚å¯¿å¸), an anime and manga illustrator from Indonesia.",
+    type: "website",
+  },
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html
+      lang="en"
+      className={`${chakraPetch.variable} ${spaceMono.variable} ${inter.variable} ${notoSansJp.variable}`}
+    >
+      <body className="flex min-h-screen flex-col bg-bg font-sans text-text antialiased">
+        {children}
+      </body>
+    </html>
+  );
+}
+
+
+import PageTransition from '@/components/PageTransition';

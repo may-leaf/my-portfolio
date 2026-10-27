@@ -5,6 +5,7 @@ import { signOutAction } from "@/app/admin/auth-actions";
 import AdminNav from "@/components/admin/AdminNav";
 import AdminSetupNotice from "@/components/admin/AdminSetupNotice";
 import { getAdminSession } from "@/lib/admin/session";
+import { connection } from "next/server";
 
 export const instant = false;
 
@@ -27,6 +28,7 @@ function SignOutButton({ compact = false }) {
 }
 
 export default async function AdminProtectedLayout({ children }) {
+  await connection();
   const session = await getAdminSession();
 
   if (!session.configured) {

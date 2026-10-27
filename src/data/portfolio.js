@@ -1,7 +1,7 @@
 export const portfolioPage = {
   eyebrow: "PORTFOLIO",
   title: "Artworks",
-  intro: "Anime, manga, character work, and fan art. New pieces land here when I finish them.",
+  intro: "draw.",
   pageSize: 20,
   filtersLabel: "Filter artworks by tag",
   tagSuggestions: ["Character", "Fanart", "Original"],

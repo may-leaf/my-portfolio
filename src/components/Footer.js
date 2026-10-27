@@ -53,7 +53,7 @@ export default function Footer() {
 
         <div className="flex flex-col gap-3 border-t border-border py-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted">
-            © {currentYear} {profile.name} {"//"} ありがとう for visiting
+            © {currentYear} {profile.name} {"//"} thank you for visiting
           </p>
 
           <a

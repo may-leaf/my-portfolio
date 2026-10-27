@@ -1,3 +1,4 @@
+﻿import PageTransition from '@/components/PageTransition';
 import {
   Chakra_Petch,
   Inter,
@@ -56,7 +57,7 @@ export default function RootLayout({ children }) {
       className={`${chakraPetch.variable} ${spaceMono.variable} ${inter.variable} ${notoSansJp.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-bg font-sans text-text antialiased">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </body>
     </html>
   );

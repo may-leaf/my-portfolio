@@ -5,6 +5,6 @@ export const navLinks = [
 ];
 
 export const footer = {
-  tagline: "Anime and manga illustrations from Indonesia.",
+  tagline: "not an artist",
   note: "All artwork belongs to Tuna (まぐろ寿司) unless stated otherwise.",
 };

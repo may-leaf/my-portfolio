@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";
 import DeleteArtworkButton from "@/components/admin/DeleteArtworkButton";
@@ -32,6 +33,7 @@ function getPage(value) {
 }
 
 export default async function AdminArtworksPage({ searchParams }) {
+  await connection();
   const params = await searchParams;
   const page = getPage(params.page);
   const created = getString(params.created);
