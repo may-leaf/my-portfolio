@@ -55,16 +55,14 @@ export default async function AdminArtworksPage({ searchParams }) {
     <div>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-            Admin
-          </p>
-          <h1 className="mt-2 font-heading text-[2.5rem] font-bold leading-tight sm:text-5xl">
+          <p className="hud-label text-primary">{"// Admin / Artworks"}</p>
+          <h1 className="mt-2 font-heading text-[2rem] font-bold uppercase leading-tight sm:text-4xl">
             Artworks
           </h1>
-          <p className="mt-3 text-sm text-muted">
+          <p className="mt-3 font-mono text-xs uppercase tracking-[0.1em] text-muted">
             {total === 0
-              ? "No artworks yet."
-              : `Showing ${start}-${end} of ${total} artworks.`}
+              ? "No records"
+              : `${start}–${end} / ${total} records`}
           </p>
         </div>
 
@@ -76,7 +74,7 @@ export default async function AdminArtworksPage({ searchParams }) {
 
       {created || updated ? (
         <p
-          className="mt-6 rounded-card border border-primary/25 bg-primary-soft px-4 py-3 text-sm text-primary"
+          className="mt-6 border border-primary/25 bg-primary-soft px-4 py-3 text-sm text-primary"
           role="status"
         >
           {created ? "Artwork published." : "Artwork updated."}
@@ -85,17 +83,17 @@ export default async function AdminArtworksPage({ searchParams }) {
 
       {error ? (
         <p
-          className="mt-6 rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+          className="mt-6 border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
           role="alert"
         >
           Could not load artworks: {error}
         </p>
       ) : artworks.length === 0 ? (
-        <div className="mt-8 rounded-card border border-border bg-surface p-6">
+        <div className="mt-8 border border-border bg-surface p-6">
           <div className="flex items-start gap-3">
             <ImageIcon aria-hidden="true" className="h-5 w-5 text-muted" />
             <div>
-              <h2 className="font-heading text-lg font-semibold">
+              <h2 className="font-heading text-lg font-semibold uppercase">
                 Nothing here yet
               </h2>
               <p className="mt-1 text-sm leading-relaxed text-muted">
@@ -108,21 +106,21 @@ export default async function AdminArtworksPage({ searchParams }) {
         <ul className="mt-8 grid gap-4">
           {artworks.map((artwork) => (
             <li
-              className="rounded-card border border-border bg-surface p-3 sm:flex sm:items-start sm:gap-4"
+              className="border border-border bg-surface p-3 transition-colors hover:border-border-strong sm:flex sm:items-start sm:gap-4"
               key={artwork.id}
             >
               <div className="shrink-0">
                 {artwork.image_url ? (
                   <Image
                     alt={artwork.title}
-                    className="h-48 w-full rounded-image border border-border object-cover sm:h-24 sm:w-24"
+                    className="h-48 w-full border border-border object-cover sm:h-24 sm:w-24"
                     height={artwork.height}
                     sizes="(min-width: 640px) 96px, 90vw"
                     src={artwork.image_url}
                     width={artwork.width}
                   />
                 ) : (
-                  <span className="flex h-48 w-full items-center justify-center rounded-image border border-border bg-surface-alt sm:h-24 sm:w-24">
+                  <span className="flex h-48 w-full items-center justify-center border border-border bg-surface-alt sm:h-24 sm:w-24">
                     <ImageIcon
                       aria-hidden="true"
                       className="h-6 w-6 text-muted"
@@ -132,7 +130,7 @@ export default async function AdminArtworksPage({ searchParams }) {
               </div>
 
               <div className="min-w-0 flex-1 py-3 sm:py-0">
-                <h2 className="truncate font-heading text-lg font-semibold">
+                <h2 className="truncate font-heading text-lg font-semibold uppercase">
                   {artwork.title}
                 </h2>
                 {artwork.description ? (
@@ -181,8 +179,8 @@ export default async function AdminArtworksPage({ searchParams }) {
             <span />
           )}
 
-          <span className="text-sm text-muted">
-            Page {page} of {totalPages}
+          <span className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
+            Page {page} / {totalPages}
           </span>
 
           {page < totalPages ? (
@@ -197,7 +195,7 @@ export default async function AdminArtworksPage({ searchParams }) {
       ) : null}
 
       <Link
-        className="mt-8 inline-flex min-h-11 items-center text-sm font-semibold text-muted transition-colors hover:text-primary"
+        className="mt-8 inline-flex min-h-11 items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:text-primary"
         href="/portfolio"
       >
         View public Portfolio

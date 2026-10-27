@@ -1,25 +1,25 @@
 import { Info } from "lucide-react";
-import {
-  addOnNote,
-  addOns,
-  commissionPage,
-} from "@/data/pricing";
+import HudPanel from "@/components/HudPanel";
+import { addOnNote, addOns, commissionPage } from "@/data/pricing";
 
 export default function AddOnTable() {
   return (
     <div>
-      <div className="overflow-hidden rounded-card border border-border bg-surface">
-        <table className="w-full text-left">
+      <HudPanel
+        className="w-full"
+        innerClassName="overflow-x-auto bg-surface p-0"
+      >
+        <table className="w-full min-w-[560px] text-left">
           <caption className="sr-only">
             {commissionPage.addOnSectionTitle}
           </caption>
-          <thead className="border-b border-border bg-surface-alt">
-            <tr className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-              <th className="px-4 py-3 sm:px-5" scope="col">
+          <thead className="border-b border-border bg-surface-raised">
+            <tr>
+              <th className="hud-label px-5 py-3 text-muted" scope="col">
                 {commissionPage.addOnNameLabel}
               </th>
               <th
-                className="px-4 py-3 text-right sm:px-5"
+                className="hud-label px-5 py-3 text-right text-muted"
                 scope="col"
               >
                 {commissionPage.addOnFeeLabel}
@@ -28,8 +28,8 @@ export default function AddOnTable() {
           </thead>
           <tbody className="divide-y divide-border">
             {addOns.map((addOn) => (
-              <tr className="align-top" key={addOn.name}>
-                <th className="px-4 py-4 font-normal sm:px-5" scope="row">
+              <tr className="align-top transition-colors hover:bg-surface-alt" key={addOn.name}>
+                <th className="px-5 py-4 font-normal" scope="row">
                   <span className="block font-heading text-base font-semibold text-text">
                     {addOn.name}
                   </span>
@@ -37,14 +37,14 @@ export default function AddOnTable() {
                     {addOn.description}
                   </span>
                 </th>
-                <td className="whitespace-nowrap px-4 py-4 text-right font-heading text-lg font-bold text-primary sm:px-5">
+                <td className="whitespace-nowrap px-5 py-4 text-right font-mono text-sm font-bold text-primary">
                   {addOn.fee}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
+      </HudPanel>
 
       <p className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-muted">
         <Info

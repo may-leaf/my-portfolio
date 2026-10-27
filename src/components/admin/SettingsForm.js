@@ -18,7 +18,7 @@ export default function SettingsForm({ open }) {
   return (
     <form action={formAction} className="mt-6 space-y-5">
       <label
-        className="flex min-h-11 cursor-pointer items-center justify-between gap-4 rounded-card border border-border bg-surface-alt px-4 py-3"
+        className="flex min-h-11 cursor-pointer items-center justify-between gap-4 border border-border bg-surface-alt px-4 py-3 transition-colors hover:border-border-strong"
         htmlFor="commissions_open"
       >
         <span>
@@ -40,7 +40,7 @@ export default function SettingsForm({ open }) {
 
       {state?.status === "error" && state.message ? (
         <p
-          className="rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+          className="border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
           role="alert"
         >
           {state.message}

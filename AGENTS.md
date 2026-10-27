@@ -1,21 +1,22 @@
-# AGENTS.md — MaguroSushi Site (my-portfolio)
+# AGENTS.md — Tuna Site (my-portfolio)
 
-Instructions for AI coding agents working in this repo. Read this file and `DESIGN.md` before making any change.
+Instructions for AI coding agents working in this repo. Read this file, `TASTE.md` and `DESIGN.md` before making any change.
 
 ## Project overview
 
-A portfolio and commission-info website for **MaguroSushi (まぐろ寿司)**, an anime/manga illustrator from Indonesia. It replaces/extends the Carrd site at https://magurosushi.carrd.co/.
+A portfolio and commission-info website for **Tuna (まぐろ寿司)**, an anime/manga illustrator from Indonesia. It replaces/extends two Carrd sites: the portfolio at https://magurosushi.carrd.co/ and the commissions at https://commissionmagurosushi.carrd.co/. The artist's display name on the site is "Tuna (まぐろ寿司)".
 
 Pages:
 1. **Home**: profile picture, short bio, link buttons, social icons
 2. **Artworks**: image gallery with lightbox
-3. **Commission Info**: price cards (Simple, Complex, Character Sheet) and add-on fees
+3. **Commission Info**: price cards (Surprise Me! and Character Sheet tiers) and add-on fees
 4. **Terms of Service**: works interest, work process, commercial use
 
 ## Source of truth
 
-- **Look and feel:** `DESIGN.md` (colors, fonts, components, spacing). Follow it exactly. Palette is black, grey and acid yellow (`#DFFF00`), dark-first.
-- **Content (prices, terms, copy):** section 9 of `DESIGN.md` and the live Carrd site. Do not invent prices, policies or bio text. If content is missing, use a clearly marked placeholder like `TODO: confirm with artist`.
+- **Personality and anti-slop rules:** `TASTE.md`. Run its pre-ship check (section 7) before finishing any UI task. If a generic habit conflicts with it, `TASTE.md` wins.
+- **Look and feel:** `DESIGN.md` (colors, fonts, components, spacing, motion). Follow it exactly. Palette is black, grey and acid yellow (`#DFFF00`), dark-first, in a tactical HUD style.
+- **Content (prices, terms, copy):** section 10 of `DESIGN.md` and the live Carrd site. Do not invent prices, policies or bio text. If content is missing, use a clearly marked placeholder like `TODO: confirm with artist`.
 - If `DESIGN.md` and a request conflict, ask before deviating.
 
 ## Tech stack
@@ -27,6 +28,7 @@ This is an **existing Next.js project**. Do not re-scaffold it and do not add Vi
 - **Tailwind CSS**: use whichever version is already in `package.json`. Do not upgrade or switch versions. If Tailwind v4, put theme tokens in the global CSS with `@theme`; if v3, use `tailwind.config`.
 - **Supabase** (`@supabase/supabase-js`) for backend/data, already added to the project
 - **Icons:** `lucide-react`
+- **Animation:** Anime.js v4 (named imports from `animejs`, `ease` option; client components only; `createScope` in `useEffect` with `scope.revert()` cleanup; respect `prefers-reduced-motion`)
 - **Package manager:** npm
 
 Before adding anything, check `package.json` and the existing folder structure, and follow what's there.
@@ -91,11 +93,14 @@ If the project uses `src/`, put these folders inside `src/`.
 
 ## Design rules (quick checklist)
 
-- Background `#0B0B0C`, surfaces `#141416` / `#1C1C1F`, borders `#2F2F35`.
-- Acid yellow `#DFFF00` is the **only** accent. Black text on yellow, never white or grey.
-- Radius: 16px cards, 12px images, pill buttons, circular avatar.
-- Artwork is never tinted, filtered or overlaid.
+- Background `#08080A`, surfaces `#111113` / `#19191C`, borders `#2E2E33`.
+- Acid yellow `#DFFF00` is the **only** accent (red only for errors/closed). Black text on yellow, never white or grey. Yellow covers under about 10% of any screen.
+- Fonts: Chakra Petch (headings), Space Mono (HUD labels), Inter (body), Noto Sans JP (Japanese text).
+- Shapes: chamfered corners via `clip-path` (8-16px), 1px hairlines, corner brackets. No pill buttons or rounded cards; only the avatar and status dots are round.
+- Artwork is never tinted, filtered, cropped to uniform squares or overlaid (except a black bottom gradient on hover).
 - Every interactive element has a visible yellow focus state.
+- Avoid the generic "AI look": see the slop checklist in `TASTE.md`. No gradient text, glass cards, icon-in-circle feature grids or marketing copy.
+- The artist's name appears as **Tuna (まぐろ寿司)**: `TUNA` in the display font with まぐろ寿司 beside or stacked.
 
 ## Accessibility & quality
 
@@ -120,11 +125,11 @@ If the project uses `src/`, put these folders inside `src/`.
 
 ## Workflow rules for agents
 
-1. Read `DESIGN.md` and this file first.
+1. Read `TASTE.md`, `DESIGN.md` and this file first.
 2. Plan briefly, then make the smallest change that solves the task.
 3. Reuse existing components before creating new ones.
 4. Do not install new dependencies without a clear reason; mention any you add.
-5. Do not edit `DESIGN.md` or `AGENTS.md` unless asked.
+5. Do not edit `DESIGN.md`, `TASTE.md` or `AGENTS.md` unless asked.
 6. After changes, run the build and lint, then summarize what changed and anything left to confirm.
 7. If something is ambiguous (missing content, unclear stack, conflicting rules), ask instead of guessing.
 

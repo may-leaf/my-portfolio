@@ -5,7 +5,9 @@ import { useTransition } from "react";
 import { portfolioPage } from "@/data/portfolio";
 
 function getTagHref(tag) {
-  return tag === "All" ? "/portfolio" : `/portfolio?tag=${encodeURIComponent(tag)}`;
+  return tag === "All"
+    ? "/portfolio"
+    : `/portfolio?tag=${encodeURIComponent(tag)}`;
 }
 
 export default function TagFilter({ activeTag, tags }) {
@@ -37,11 +39,12 @@ export default function TagFilter({ activeTag, tags }) {
         return (
           <button
             aria-pressed={active}
-            className={`inline-flex min-h-11 shrink-0 items-center rounded-full border px-4 text-sm font-semibold transition-colors ${
+            className={[
+              "hud-chip min-h-11 shrink-0 px-4 font-mono text-xs uppercase tracking-[0.14em] transition-colors",
               active
-                ? "border-primary bg-primary text-primary-ink"
-                : "border-border bg-surface text-muted hover:border-primary hover:text-primary"
-            }`}
+                ? "hud-chip--primary"
+                : "text-muted hover:bg-surface-raised hover:text-primary",
+            ].join(" ")}
             key={tag}
             onClick={() => handleSelect(tag)}
             type="button"

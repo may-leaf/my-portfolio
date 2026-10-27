@@ -18,8 +18,7 @@ const extensionByType = {
   "image/webp": "webp",
 };
 
-const inputClassName =
-  "mt-2 block min-h-11 w-full rounded-input border border-border bg-surface-alt px-3 text-base text-text placeholder:text-muted focus:border-primary";
+const inputClassName = "hud-field mt-2 block min-h-11 w-full px-3 text-base";
 
 function getImageDimensions(file) {
   return new Promise((resolve, reject) => {
@@ -191,13 +190,13 @@ export default function ArtworkUploader() {
   return (
     <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
       <div>
-        <label className="text-sm font-semibold" htmlFor="image">
+        <label className="hud-label text-muted" htmlFor="image">
           Image
         </label>
         <input
           accept={artworkFileTypes.join(",")}
           aria-describedby="image-help"
-          className="mt-2 block w-full cursor-pointer rounded-input border border-border bg-surface-alt px-3 py-2 text-sm text-muted file:mr-4 file:rounded-pill file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-ink hover:file:bg-primary-hover"
+          className="hud-field mt-2 block w-full cursor-pointer px-3 py-2 text-sm text-muted file:mr-4 file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-ink hover:file:bg-primary-hover"
           id="image"
           name="image"
           onChange={(event) => {
@@ -213,7 +212,7 @@ export default function ArtworkUploader() {
       </div>
 
       <div>
-        <label className="text-sm font-semibold" htmlFor="title">
+        <label className="hud-label text-muted" htmlFor="title">
           Title
         </label>
         <input
@@ -227,7 +226,7 @@ export default function ArtworkUploader() {
       </div>
 
       <div>
-        <label className="text-sm font-semibold" htmlFor="description">
+        <label className="hud-label text-muted" htmlFor="description">
           Description
         </label>
         <textarea
@@ -241,7 +240,7 @@ export default function ArtworkUploader() {
       </div>
 
       <div>
-        <label className="text-sm font-semibold" htmlFor="tags">
+        <label className="hud-label text-muted" htmlFor="tags">
           Tags
         </label>
         <input
@@ -260,7 +259,7 @@ export default function ArtworkUploader() {
         <div className="mt-3 flex flex-wrap gap-2">
           {portfolioPage.tagSuggestions.map((tag) => (
             <button
-              className="inline-flex min-h-11 items-center rounded-pill border border-border bg-surface px-3 text-sm font-semibold text-muted transition-colors hover:border-primary hover:text-primary"
+              className="inline-flex min-h-11 items-center border border-border bg-surface px-3 font-mono text-xs uppercase tracking-[0.1em] text-muted transition-colors hover:border-primary hover:text-primary"
               key={tag}
               onClick={() => addSuggestedTag(tag)}
               type="button"
@@ -273,7 +272,7 @@ export default function ArtworkUploader() {
 
       {error ? (
         <p
-          className="rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+          className="border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
           role="alert"
         >
           {error}

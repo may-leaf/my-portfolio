@@ -1,9 +1,22 @@
-import { Inter, Noto_Sans_JP, Space_Grotesk } from "next/font/google";
+import {
+  Chakra_Petch,
+  Inter,
+  Noto_Sans_JP,
+  Space_Mono,
+} from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const chakraPetch = Chakra_Petch({
+  variable: "--font-chakra-petch",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -23,15 +36,15 @@ const notoSansJp = Noto_Sans_JP({
 
 export const metadata = {
   title: {
-    default: "MaguroSushi — Anime & Manga Illustrator",
-    template: "%s | MaguroSushi",
+    default: "Tuna (まぐろ寿司) — Anime & Manga Illustrator",
+    template: "%s | Tuna (まぐろ寿司)",
   },
   description:
-    "Portfolio and commission information for MaguroSushi, an anime and manga illustrator from Indonesia.",
+    "Portfolio and commission information for Tuna (まぐろ寿司), an anime and manga illustrator from Indonesia.",
   openGraph: {
-    title: "MaguroSushi — Anime & Manga Illustrator",
+    title: "Tuna (まぐろ寿司) — Anime & Manga Illustrator",
     description:
-      "Portfolio and commission information for MaguroSushi, an anime and manga illustrator from Indonesia.",
+      "Portfolio and commission information for Tuna (まぐろ寿司), an anime and manga illustrator from Indonesia.",
     type: "website",
   },
 };
@@ -40,9 +53,9 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${notoSansJp.variable}`}
+      className={`${chakraPetch.variable} ${spaceMono.variable} ${inter.variable} ${notoSansJp.variable}`}
     >
-      <body className="flex min-h-screen flex-col bg-bg text-text antialiased">
+      <body className="flex min-h-screen flex-col bg-bg font-sans text-text antialiased">
         {children}
       </body>
     </html>

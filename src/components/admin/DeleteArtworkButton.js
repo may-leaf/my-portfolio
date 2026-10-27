@@ -85,7 +85,7 @@ export default function DeleteArtworkButton({ artwork }) {
     <>
       <button
         aria-haspopup="dialog"
-        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-pill border border-danger/30 bg-danger/10 px-4 text-sm font-semibold text-danger transition-colors hover:bg-danger/20"
+        className="inline-flex min-h-11 items-center justify-center gap-2 border border-danger/30 bg-danger/10 px-4 text-sm font-semibold text-danger transition-colors hover:bg-danger/20"
         onClick={() => setIsOpen(true)}
         type="button"
       >
@@ -95,7 +95,7 @@ export default function DeleteArtworkButton({ artwork }) {
 
       <dialog
         aria-labelledby={`delete-title-${artwork.id}`}
-        className="m-auto w-[min(92vw,420px)] rounded-card border border-border bg-surface p-0 text-text shadow-modal backdrop:bg-bg/90"
+        className="m-auto w-[min(92vw,440px)] border border-border border-t-2 border-t-danger bg-surface p-0 text-text backdrop:bg-bg/90"
         onCancel={(event) => {
           event.preventDefault();
           closeDialog();
@@ -108,8 +108,9 @@ export default function DeleteArtworkButton({ artwork }) {
         ref={dialogRef}
       >
         <div className="p-6">
+          <p className="hud-label text-danger">{"// Destructive action"}</p>
           <h2
-            className="font-heading text-2xl font-bold leading-tight"
+            className="mt-2 font-heading text-2xl font-bold uppercase leading-tight"
             id={`delete-title-${artwork.id}`}
           >
             Delete artwork?
@@ -122,7 +123,7 @@ export default function DeleteArtworkButton({ artwork }) {
 
           {deletedMessage ? (
             <p
-              className="mt-4 rounded-card border border-danger/30 bg-danger/10 px-4 py-3 text-sm text-danger"
+              className="mt-4 border border-danger/30 bg-danger/10 px-4 py-3 text-sm text-danger"
               role="status"
             >
               {deletedMessage}
@@ -131,7 +132,7 @@ export default function DeleteArtworkButton({ artwork }) {
 
           {error ? (
             <p
-              className="mt-4 rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+              className="mt-4 border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
               role="alert"
             >
               {error}
@@ -141,7 +142,7 @@ export default function DeleteArtworkButton({ artwork }) {
           <div className="mt-6 flex flex-wrap justify-end gap-3">
             {deletedMessage ? (
               <button
-                className="inline-flex min-h-11 items-center justify-center rounded-pill border border-border bg-surface px-5 text-sm font-semibold text-text transition-colors hover:border-primary hover:text-primary"
+                  className="inline-flex min-h-11 items-center justify-center border border-border bg-surface px-5 text-sm font-semibold text-text transition-colors hover:border-primary hover:text-primary"
                 onClick={closeDialog}
                 type="button"
               >
@@ -150,7 +151,7 @@ export default function DeleteArtworkButton({ artwork }) {
             ) : (
               <>
                 <button
-                  className="inline-flex min-h-11 items-center justify-center rounded-pill border border-border bg-surface px-5 text-sm font-semibold text-text transition-colors hover:border-primary hover:text-primary"
+                className="inline-flex min-h-11 items-center justify-center border border-border bg-surface px-5 text-sm font-semibold text-text transition-colors hover:border-primary hover:text-primary"
                   disabled={isDeleting}
                   onClick={closeDialog}
                   type="button"
@@ -158,7 +159,7 @@ export default function DeleteArtworkButton({ artwork }) {
                   Cancel
                 </button>
                 <button
-                  className="inline-flex min-h-11 items-center justify-center rounded-pill border border-danger/40 bg-danger/10 px-5 text-sm font-semibold text-danger transition-colors hover:bg-danger/20 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex min-h-11 items-center justify-center border border-danger/40 bg-danger/10 px-5 text-sm font-semibold text-danger transition-colors hover:bg-danger/20 disabled:cursor-not-allowed disabled:opacity-50"
                   disabled={isDeleting}
                   onClick={handleDelete}
                   type="button"

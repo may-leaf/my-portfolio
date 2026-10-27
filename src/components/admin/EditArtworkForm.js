@@ -10,8 +10,7 @@ const initialState = {
   message: null,
 };
 
-const inputClassName =
-  "mt-2 block min-h-11 w-full rounded-input border border-border bg-surface-alt px-3 text-base text-text placeholder:text-muted focus:border-primary";
+const inputClassName = "hud-field mt-2 block min-h-11 w-full px-3 text-base";
 
 export default function EditArtworkForm({ artwork }) {
   const router = useRouter();
@@ -34,7 +33,7 @@ export default function EditArtworkForm({ artwork }) {
       <input name="height" type="hidden" value={artwork.height} />
 
       <div>
-        <label className="text-sm font-semibold" htmlFor="title">
+        <label className="hud-label text-muted" htmlFor="title">
           Title
         </label>
         <input
@@ -49,7 +48,7 @@ export default function EditArtworkForm({ artwork }) {
       </div>
 
       <div>
-        <label className="text-sm font-semibold" htmlFor="description">
+        <label className="hud-label text-muted" htmlFor="description">
           Description
         </label>
         <textarea
@@ -63,7 +62,7 @@ export default function EditArtworkForm({ artwork }) {
       </div>
 
       <div>
-        <label className="text-sm font-semibold" htmlFor="tags">
+        <label className="hud-label text-muted" htmlFor="tags">
           Tags
         </label>
         <input
@@ -82,7 +81,7 @@ export default function EditArtworkForm({ artwork }) {
 
       {state?.status === "error" && state.message ? (
         <p
-          className="rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+          className="border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
           role="alert"
         >
           {state.message}

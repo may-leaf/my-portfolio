@@ -27,19 +27,19 @@ export default async function AdminSettingsPage() {
 
   return (
     <div className="max-w-[720px]">
-      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-        Admin
-      </p>
-      <h1 className="mt-2 font-heading text-[2.5rem] font-bold leading-tight sm:text-5xl">
+      <p className="hud-label text-primary">{"// Admin / Settings"}</p>
+      <h1 className="mt-2 font-heading text-[2rem] font-bold uppercase leading-tight sm:text-4xl">
         Commission settings
       </h1>
       <p className="mt-3 text-sm leading-relaxed text-muted">
         Update the public commission availability status.
       </p>
 
-      <div className="mt-8 rounded-card border border-border bg-surface p-6">
+      <div className="mt-8 border border-border bg-surface p-6">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="font-heading text-xl font-semibold">Current status</h2>
+          <h2 className="font-heading text-lg font-semibold uppercase">
+            Current status
+          </h2>
           <StatusBadge
             closedLabel={commissionPage.statusClosed}
             open={open}
@@ -55,7 +55,7 @@ export default async function AdminSettingsPage() {
 
         {error ? (
           <p
-            className="mt-5 rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+            className="mt-5 border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
             role="alert"
           >
             Could not load the settings row: {error.message}
@@ -63,7 +63,7 @@ export default async function AdminSettingsPage() {
         ) : null}
 
         {!data && !error ? (
-          <p className="mt-5 rounded-card border border-border bg-surface-alt px-4 py-3 text-sm text-muted">
+          <p className="mt-5 border border-border bg-surface-alt px-4 py-3 text-sm text-muted">
             The settings row is missing. Saving will create it.
           </p>
         ) : null}

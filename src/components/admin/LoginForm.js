@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const inputClassName =
-  "mt-2 block min-h-11 w-full rounded-input border border-border bg-surface-alt px-3 text-base text-text placeholder:text-muted focus:border-primary";
+  "hud-field mt-2 block min-h-11 w-full px-3 text-base";
 
 export default function LoginForm({ next }) {
   const [state, formAction, pending] = useActionState(
@@ -22,7 +22,7 @@ export default function LoginForm({ next }) {
       {next ? <input name="next" type="hidden" value={next} /> : null}
 
       <div>
-        <label className="text-sm font-semibold" htmlFor="email">
+        <label className="hud-label text-muted" htmlFor="email">
           Email
         </label>
         <input
@@ -36,7 +36,7 @@ export default function LoginForm({ next }) {
       </div>
 
       <div>
-        <label className="text-sm font-semibold" htmlFor="password">
+        <label className="hud-label text-muted" htmlFor="password">
           Password
         </label>
         <input
@@ -51,7 +51,7 @@ export default function LoginForm({ next }) {
 
       {state?.error ? (
         <p
-          className="rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+          className="border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
           role="alert"
         >
           {state.error}

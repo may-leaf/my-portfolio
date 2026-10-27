@@ -10,10 +10,8 @@ export default function NewArtworkPage() {
     <div className="max-w-[720px]">
       <BackLink href="/admin/artworks">Back to artworks</BackLink>
 
-      <p className="mt-8 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-        Admin
-      </p>
-      <h1 className="mt-2 font-heading text-[2.5rem] font-bold leading-tight sm:text-5xl">
+      <p className="mt-8 hud-label text-primary">{"// Admin / Artworks"}</p>
+      <h1 className="mt-2 font-heading text-[2rem] font-bold uppercase leading-tight sm:text-4xl">
         Upload artwork
       </h1>
       <p className="mt-3 text-sm leading-relaxed text-muted">

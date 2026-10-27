@@ -1,23 +1,22 @@
 export const portfolioPage = {
   eyebrow: "PORTFOLIO",
   title: "Artworks",
-  intro:
-    "A collection of anime and manga illustrations, character work and fan art.",
+  intro: "Anime, manga, character work, and fan art. New pieces land here when I finish them.",
   pageSize: 20,
   filtersLabel: "Filter artworks by tag",
   tagSuggestions: ["Character", "Fanart", "Original"],
   emptyState: {
-    title: "No artworks here yet",
-    body: "New illustrations will appear here as soon as they are published. Check back soon.",
+    title: "Nothing here yet",
+    body: "Nothing here yet. `/ᐠ｡ꞈ｡ᐟ\\`",
   },
   errorState: {
-    title: "Artworks could not be loaded",
+    title: "The archive didn't load",
     body: "Please refresh the page or try again in a moment.",
   },
   latestWork: {
     eyebrow: "Fresh from the desk",
     title: "Latest work",
-    action: "View all",
+    action: "Open archive",
   },
   lightbox: {
     closeLabel: "Close artwork",

@@ -1,31 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0b0b0c;
-  --color-surface: #141416;
-  --color-surface-alt: #1c1c1f;
-  --color-surface-raised: #26262b;
-  --color-border: #2f2f35;
-  --color-text: #f2f2ee;
-  --color-muted: #9a9aa2;
+  --color-bg: #08080a;
+  --color-surface: #111113;
+  --color-surface-alt: #19191c;
+  --color-surface-raised: #232327;
+  --color-border: #2e2e33;
+  --color-border-strong: #4a4a52;
+  --color-text: #f4f4f0;
+  --color-muted: #8e8e96;
   --color-primary: #dfff00;
   --color-primary-hover: #c6e600;
-  --color-primary-ink: #0b0b0c;
-  --color-primary-soft: rgba(223, 255, 0, 0.14);
+  --color-primary-ink: #08080a;
+  --color-primary-soft: rgba(223, 255, 0, 0.12);
   --color-danger: #ff5a4f;
+  --color-grid-line: rgba(255, 255, 255, 0.04);
 
-  --font-heading: var(--font-space-grotesk), var(--font-noto-sans-jp), sans-serif;
+  --font-heading: var(--font-chakra-petch), var(--font-noto-sans-jp), sans-serif;
   --font-sans: var(--font-inter), var(--font-noto-sans-jp), sans-serif;
+  --font-mono: var(--font-space-mono), ui-monospace, monospace;
   --font-jp: var(--font-noto-sans-jp), sans-serif;
 
-  --radius-input: 8px;
-  --radius-image: 12px;
-  --radius-card: 16px;
-  --radius-pill: 999px;
-
-  --shadow-glow: 0 8px 24px rgba(223, 255, 0, 0.12);
-  --shadow-avatar: 0 0 32px rgba(223, 255, 0, 0.18);
-  --shadow-modal: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 24px rgba(223, 255, 0, 0.1);
 }
 
 :root {
@@ -35,6 +31,7 @@
 html {
   background-color: var(--color-bg);
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -57,6 +54,369 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+@layer components {
+  .hud-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .hud-panel {
+    --cut: 12px;
+    --clip: polygon(
+      0 0,
+      calc(100% - var(--cut)) 0,
+      100% var(--cut),
+      100% 100%,
+      var(--cut) 100%,
+      0 calc(100% - var(--cut))
+    );
+    position: relative;
+    background: var(--color-border);
+    clip-path: var(--clip);
+    padding: 1px;
+    transition:
+      background-color 200ms ease,
+      box-shadow 200ms ease;
+  }
+
+  .hud-panel > .hud-panel__inner {
+    position: relative;
+    height: 100%;
+    background: var(--color-surface);
+    clip-path: var(--clip);
+  }
+
+  .hud-panel--interactive:hover,
+  .hud-panel--interactive:focus-within {
+    background: var(--color-primary);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .hud-frame {
+    --cut: 12px;
+    --clip: polygon(
+      0 0,
+      calc(100% - var(--cut)) 0,
+      100% var(--cut),
+      100% 100%,
+      var(--cut) 100%,
+      0 calc(100% - var(--cut))
+    );
+    position: relative;
+    background: var(--color-border);
+    clip-path: var(--clip);
+    padding: 1px;
+    transition:
+      background-color 200ms ease,
+      box-shadow 200ms ease;
+  }
+
+  .hud-frame > .hud-frame__inner {
+    position: relative;
+    height: 100%;
+    background: var(--color-surface);
+    clip-path: var(--clip);
+  }
+
+  .hud-frame--interactive:hover,
+  .hud-frame--interactive:focus-within {
+    background: var(--color-primary);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .hud-cut-8 {
+    --cut: 8px;
+  }
+
+  .hud-cut-16 {
+    --cut: 16px;
+  }
+
+  .hud-btn {
+    --cut: 8px;
+    --clip: polygon(
+      0 0,
+      calc(100% - var(--cut)) 0,
+      100% var(--cut),
+      100% 100%,
+      var(--cut) 100%,
+      0 calc(100% - var(--cut))
+    );
+    --btn-bg: transparent;
+    --btn-border: var(--color-border-strong);
+    --btn-text: var(--color-text);
+    position: relative;
+    clip-path: var(--clip);
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    transition:
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .hud-btn::before {
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--btn-border);
+    clip-path: var(--clip);
+    content: "";
+    pointer-events: none;
+    transition: background-color 180ms ease;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  .hud-btn--primary {
+    --btn-bg: var(--color-primary);
+    --btn-border: var(--color-primary);
+    --btn-text: var(--color-primary-ink);
+  }
+
+  .hud-btn--primary:hover {
+    --btn-bg: var(--color-primary-hover);
+    --btn-border: var(--color-primary-hover);
+  }
+
+  .hud-btn--secondary {
+    --btn-bg: transparent;
+    --btn-border: var(--color-border-strong);
+    --btn-text: var(--color-text);
+  }
+
+  .hud-btn--secondary:hover {
+    --btn-border: var(--color-primary);
+    --btn-text: var(--color-primary);
+  }
+
+  .hud-btn--ghost {
+    --btn-bg: transparent;
+    --btn-border: transparent;
+    --btn-text: var(--color-muted);
+  }
+
+  .hud-btn--ghost:hover {
+    --btn-text: var(--color-primary);
+  }
+
+  .hud-btn--danger {
+    --btn-bg: rgba(255, 90, 79, 0.1);
+    --btn-border: rgba(255, 90, 79, 0.4);
+    --btn-text: var(--color-danger);
+  }
+
+  .hud-btn--danger:hover {
+    --btn-bg: rgba(255, 90, 79, 0.18);
+  }
+
+  .hud-chip {
+    --cut: 8px;
+    --clip: polygon(
+      0 0,
+      calc(100% - var(--cut)) 0,
+      100% var(--cut),
+      100% 100%,
+      var(--cut) 100%,
+      0 calc(100% - var(--cut))
+    );
+    --chip-bg: var(--color-surface-alt);
+    --chip-border: var(--color-border);
+    --chip-text: var(--color-muted);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    clip-path: var(--clip);
+    background-color: var(--chip-bg);
+    color: var(--chip-text);
+    transition:
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .hud-chip::before {
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--chip-border);
+    clip-path: var(--clip);
+    content: "";
+    pointer-events: none;
+    transition: background-color 180ms ease;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  .hud-chip--primary {
+    --chip-bg: var(--color-primary);
+    --chip-border: var(--color-primary);
+    --chip-text: var(--color-primary-ink);
+  }
+
+  .hud-chip--soft {
+    --chip-bg: var(--color-primary-soft);
+    --chip-border: rgba(223, 255, 0, 0.28);
+    --chip-text: var(--color-primary);
+  }
+
+  .hud-chip--danger {
+    --chip-bg: rgba(255, 90, 79, 0.1);
+    --chip-border: rgba(255, 90, 79, 0.3);
+    --chip-text: var(--color-danger);
+  }
+
+  .hud-field {
+    --cut: 8px;
+    background-color: var(--color-surface-alt);
+    border: 1px solid var(--color-border);
+    clip-path: polygon(
+      0 0,
+      calc(100% - var(--cut)) 0,
+      100% var(--cut),
+      100% 100%,
+      var(--cut) 100%,
+      0 calc(100% - var(--cut))
+    );
+    color: var(--color-text);
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .hud-field::placeholder {
+    color: var(--color-muted);
+  }
+
+  .hud-field:focus {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface-raised);
+  }
+
+  .hud-leader {
+    flex: 1;
+    min-width: 1.5rem;
+    border-bottom: 1px dotted var(--color-border-strong);
+    transform: translateY(-0.35em);
+  }
+
+  .hud-link {
+    position: relative;
+  }
+
+  .hud-link::after {
+    position: absolute;
+    bottom: -0.2rem;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    content: "";
+    transition: width 200ms ease;
+  }
+
+  .hud-link:hover::after,
+  .hud-link:focus-visible::after {
+    width: 100%;
+  }
+
+  .hud-grid {
+    background-image:
+      linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .hud-scanlines {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 3px,
+      rgba(255, 255, 255, 0.025) 3px,
+      rgba(255, 255, 255, 0.025) 4px
+    );
+  }
+
+  .hud-vignette {
+    background: radial-gradient(
+      circle at center,
+      transparent 35%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+}
+
+.hud-details[open] .hud-details__content {
+  animation: hud-details-in 260ms ease-out both;
+}
+
+@keyframes hud-details-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hud-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.hud-pulse {
+  animation: hud-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes hud-preloader-safety {
+  to {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+#site-preloader {
+  animation: hud-preloader-safety 0s 3.2s forwards;
+}
+
+html[data-preloader="skip"] #site-preloader,
+html[data-preloader="done"] #site-preloader {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .hud-grid {
+    background-image: none;
+  }
+
+  .hud-scanlines {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -69,5 +429,9 @@ summary::-webkit-details-marker {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  #site-preloader {
+    display: none;
   }
 }

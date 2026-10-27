@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { animate, stagger } from "animejs";
+import { Plus } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import Button from "@/components/Button";
 import ArtworkCard from "@/components/portfolio/ArtworkCard";
 import Lightbox from "@/components/portfolio/Lightbox";
@@ -17,8 +19,51 @@ export default function ArtworkGallery({
   const [openId, setOpenId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const seenIds = useRef(new Set(initialArtworks.map((artwork) => artwork.id)));
+  const galleryRef = useRef(null);
 
   const openIndex = artworks.findIndex((artwork) => artwork.id === openId);
+  const recordCount = `${String(artworks.length).padStart(2, "0")}${
+    hasMore ? "+" : ""
+  }`;
+
+  useEffect(() => {
+    const newArtworks = artworks.filter(
+      (artwork) => !seenIds.current.has(artwork.id),
+    );
+
+    if (!newArtworks.length) {
+      return;
+    }
+
+    newArtworks.forEach((artwork) => seenIds.current.add(artwork.id));
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    const nodes = newArtworks
+      .map((artwork) =>
+        galleryRef.current?.querySelector(
+          `[data-artwork-id="${CSS.escape(artwork.id)}"]`,
+        ),
+      )
+      .filter(Boolean);
+
+    if (!nodes.length) {
+      return;
+    }
+
+    const animation = animate(nodes, {
+      opacity: [0, 1],
+      translateY: [18, 0],
+      delay: stagger(60),
+      duration: 500,
+      ease: "outExpo",
+    });
+
+    return () => animation.revert();
+  }, [artworks]);
 
   async function handleLoadMore() {
     setIsLoading(true);
@@ -47,10 +92,24 @@ export default function ArtworkGallery({
         Showing {artworks.length} artworks
       </p>
 
-      <div className="columns-2 gap-3 sm:columns-3 md:gap-4 lg:columns-4 2xl:columns-5">
-        {artworks.map((artwork) => (
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-4">
+        <p className="hud-label text-muted">
+          {"// Records"}
+          <span className="ml-3 text-primary">{recordCount}</span>
+        </p>
+        <p className="hud-label text-muted">
+          {hasMore ? "More available" : "End of loaded archive"}
+        </p>
+      </div>
+
+      <div
+        className="mt-6 columns-2 gap-3 sm:columns-3 md:gap-4 lg:columns-4 2xl:columns-5"
+        ref={galleryRef}
+      >
+        {artworks.map((artwork, index) => (
           <ArtworkCard
             artwork={artwork}
+            index={index}
             key={artwork.id}
             onOpen={setOpenId}
           />
@@ -59,7 +118,7 @@ export default function ArtworkGallery({
 
       {error ? (
         <p
-          className="mt-5 rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+          className="mt-6 border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
           role="alert"
         >
           {error}
@@ -73,7 +132,8 @@ export default function ArtworkGallery({
             onClick={handleLoadMore}
             variant="secondary"
           >
-            {isLoading ? "Loading…" : "Load more"}
+            <Plus aria-hidden="true" className="h-4 w-4" />
+            {isLoading ? "Loading records..." : "Load more records"}
           </Button>
         </div>
       ) : null}

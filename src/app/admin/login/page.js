@@ -8,7 +8,7 @@ export const instant = false;
 
 export const metadata = {
   title: "Sign in",
-  description: "Admin sign in for MaguroSushi.",
+  description: "Admin sign in for Tuna (まぐろ寿司).",
 };
 
 export default async function AdminLoginPage({ searchParams }) {
@@ -20,16 +20,15 @@ export default async function AdminLoginPage({ searchParams }) {
   }
 
   return (
-    <div className="mx-auto flex min-h-screen w-full max-w-[420px] flex-col justify-center px-5 py-16">
-      <div className="rounded-card border border-border bg-surface p-6 sm:p-8">
-        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-primary/25 bg-primary-soft text-primary">
+    <div className="mx-auto flex min-h-screen w-full max-w-[440px] flex-col justify-center px-5 py-16">
+      <p className="hud-label text-primary">{"// Restricted access"}</p>
+
+      <div className="mt-3 border border-border border-t-2 border-t-primary bg-surface p-6 sm:p-8">
+        <span className="flex h-12 w-12 items-center justify-center border border-primary/25 bg-primary-soft text-primary">
           <LockKeyhole aria-hidden="true" className="h-5 w-5" />
         </span>
 
-        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-          MaguroSushi
-        </p>
-        <h1 className="mt-2 font-heading text-3xl font-bold leading-tight">
+        <h1 className="mt-6 font-heading text-3xl font-bold uppercase leading-tight">
           Admin sign in
         </h1>
         <p className="mt-3 text-sm leading-relaxed text-muted">
@@ -40,9 +39,10 @@ export default async function AdminLoginPage({ searchParams }) {
       </div>
 
       <Link
-        className="mt-6 inline-flex min-h-11 items-center justify-center text-sm font-semibold text-muted transition-colors hover:text-primary"
+        className="mt-6 inline-flex min-h-11 items-center justify-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-muted transition-colors hover:text-primary"
         href="/"
       >
+        <span aria-hidden="true">{"<"}</span>
         Back to public site
       </Link>
     </div>

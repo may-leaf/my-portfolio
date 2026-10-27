@@ -23,4 +23,5 @@ export const contactLink = {
   id: "contact",
   label: "Contact",
   icon: "mail",
+  href: "mailto:notafishboi@gmail.com",
 };

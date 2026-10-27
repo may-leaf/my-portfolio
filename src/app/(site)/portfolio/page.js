@@ -10,11 +10,11 @@ import { fetchArtworks, fetchArtworkTags } from "@/lib/artworks";
 export const metadata = {
   title: "Artworks",
   description:
-    "Browse anime and manga illustrations, character work and fan art by MaguroSushi.",
+    "Browse anime and manga illustrations, character work and fan art by Tuna (まぐろ寿司).",
   openGraph: {
-    title: "Artworks | MaguroSushi",
+    title: "Artworks | Tuna (まぐろ寿司)",
     description:
-      "Browse anime and manga illustrations, character work and fan art by MaguroSushi.",
+      "Browse anime and manga illustrations, character work and fan art by Tuna (まぐろ寿司).",
     type: "website",
   },
 };
@@ -63,17 +63,36 @@ async function PortfolioContent({ searchParams }) {
 
 export default function PortfolioPage({ searchParams }) {
   return (
-    <div className="mx-auto w-full max-w-[1120px] px-5 py-12 sm:py-16">
+    <div className="mx-auto w-full max-w-[1440px] px-5 pb-20 pt-28 sm:px-8 sm:pt-32">
       <BackLink />
-      <p className="mt-8 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-        {portfolioPage.eyebrow}
-      </p>
-      <h1 className="mt-2 font-heading text-[2.5rem] font-bold leading-tight sm:text-5xl">
-        {portfolioPage.title}
-      </h1>
-      <p className="mt-4 max-w-2xl text-base leading-[1.7] text-muted">
-        {portfolioPage.intro}
-      </p>
+
+      <header className="mt-8 border-b border-border pb-8">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <p className="hud-label text-primary">
+              {"// "}
+              {portfolioPage.eyebrow}
+            </p>
+            <h1 className="mt-3 font-heading text-[clamp(2.75rem,7vw,5.5rem)] font-bold uppercase leading-[0.92]">
+              {portfolioPage.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-[1.7] text-muted sm:text-lg">
+              {portfolioPage.intro}
+            </p>
+          </div>
+
+          <div className="border-l border-border pl-5">
+            <p className="hud-label text-muted">Archive status</p>
+            <p className="mt-2 flex items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-primary">
+              <span
+                aria-hidden="true"
+                className="hud-pulse h-1.5 w-1.5 rounded-full bg-primary"
+              />
+              Online
+            </p>
+          </div>
+        </div>
+      </header>
 
       <div className="mt-8">
         <Suspense fallback={<PortfolioSkeleton />}>

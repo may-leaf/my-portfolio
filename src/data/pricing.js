@@ -1,16 +1,14 @@
 export const commissionPage = {
   eyebrow: "COMMISSION INFO",
   title: "Commission Info",
-  intro:
-    "I specialize in anime and manga-style art, including custom character illustrations and fan art. Check the pricing below, then reach out with any questions or to get started.",
-  statusOpen: "Commissions open",
-  statusClosed: "Commissions closed",
+  intro: "Characters, fanart, OCs. Check the prices, then message me. `/ᐠ｡ꞈ｡ᐟ\\`",
+  statusOpen: "// OPEN",
+  statusClosed: "// CLOSED",
   contactSectionTitle: "Contact",
-  contactLabel: "Contact to commission",
-  contactNote: "Best reached through Twitter or email.",
+  contactLabel: "Message me",
+  contactNote: "Twitter or email. I read both.",
   priceSectionTitle: "Pricing",
-  priceSectionIntro:
-    "Base prices for each commission type. Add-ons and commercial use may change the final total.",
+  priceSectionIntro: "Two commission types. Pick what fits, or ask me first.",
   priceExampleLabel: "Example",
   priceIncludesLabel: "Includes",
   priceGoodForLabel: "Good for",
@@ -19,47 +17,36 @@ export const commissionPage = {
   addOnFeeLabel: "Fee",
   termsSectionTitle: "Terms of Service",
   termsSectionIntro:
-    "Welcome! Please take a moment to review my Terms of Service. These guidelines keep everything smooth and clear from start to finish. If anything is unclear, feel free to ask.",
+    "A quick rundown of how I work so we can keep things clear from start to finish.",
 };
 
 export const priceCards = [
   {
-    id: "simple",
-    title: "Simple Illustration",
+    id: "surprise-me",
+    label: "TYPE-A",
+    title: "Surprise Me!",
     description:
-      "A clean, minimal illustration that focuses on a single character or object with little to no background. Perfect for profile pictures, emotes and icons.",
+      "An artistic-interpretation piece with creative freedom. I decide the composition, pose, and level of detail based on the character and mood you give me.",
     example:
-      "A full-body or bust character with basic coloring and shading, and a plain or simple background.",
-    goodFor: "Quick commissions, character references or social media avatars.",
-    prices: [
-      { option: "Black & White", price: "55 USD" },
-      { option: "Full Color", price: "85 USD" },
-    ],
-  },
-  {
-    id: "complex",
-    title: "Complex Illustration",
-    description:
-      "A highly detailed, dynamic composition with multiple characters, intricate backgrounds or elaborate poses and effects. Made for immersive, polished pieces.",
-    example:
-      "A fully rendered character with detailed clothing, intricate backgrounds, dynamic lighting and extra effects or props.",
-    goodFor: "High-impact visuals, storytelling or promotional artwork.",
-    prices: [
-      { option: "Black & White", price: "85 USD" },
-      { option: "Full Color", price: "120 USD" },
-    ],
+      "A character illustrated in a dynamic or stylized pose, with detail ranging from simple to refined depending on the concept.",
+    goodFor: "OC interpretations, fanart, experimental pieces, or clients who want an organic, artist-driven result.",
+    prices: [{ option: "Base price", price: "120 USD" }],
+    note:
+      "IMPORTANT: Final composition, pose, and level of detail are decided by the artist. No or minimal revisions.",
   },
   {
     id: "character-sheet",
+    label: "TYPE-B",
     title: "Character Sheet",
     description:
-      "A comprehensive reference sheet showing your character from multiple angles, with key details like expressions, outfits and accessories.",
+      "A reference sheet showing your character from multiple angles with expressions, outfits, and accessories.",
     includes:
-      "Front and back views, detailed close-ups of expressions, accessories, and optional additional poses or outfits.",
-    goodFor: "Character development, animation references or game assets.",
+      "Front and back views, close-ups of expressions and accessories, and optional extra poses or outfits.",
+    goodFor: "Character development, animation references, or game assets.",
     prices: [
-      { option: "Black & White", price: "Contact for quote" },
-      { option: "Full Color", price: "Contact for quote" },
+      { option: "Basic", detail: "Front view, 2 expressions, minimal accessories", price: "150–200 USD" },
+      { option: "Standard", detail: "Front & back views, 4 expressions, a pose, detailed accessories", price: "250–550 USD" },
+      { option: "Premium", detail: "Multiple views, several expressions, outfit variations, action poses", price: "600–1100 USD" },
     ],
   },
 ];
@@ -107,8 +94,7 @@ export const termsSections = [
   {
     id: "work-process",
     title: "Work process",
-    intro:
-      "Commissions are handled on a queue basis. Here is what to expect from references to final delivery.",
+    intro: "Commissions are handled on a queue basis. Here's what to expect.",
     groups: [
       {
         title: "Queue and references",

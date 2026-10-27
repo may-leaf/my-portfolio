@@ -1,4 +1,4 @@
-import { LogOut } from "lucide-react";
+import { ArrowUpRight, LogOut } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { signOutAction } from "@/app/admin/auth-actions";
@@ -7,6 +7,24 @@ import AdminSetupNotice from "@/components/admin/AdminSetupNotice";
 import { getAdminSession } from "@/lib/admin/session";
 
 export const instant = false;
+
+function SignOutButton({ compact = false }) {
+  return (
+    <form action={signOutAction}>
+      <button
+        aria-label={compact ? "Sign out" : undefined}
+        className={[
+          "inline-flex min-h-11 items-center justify-center gap-2 border border-border bg-surface text-sm font-semibold text-muted transition-colors hover:border-primary hover:text-primary",
+          compact ? "w-11 p-0" : "w-full px-3",
+        ].join(" ")}
+        type="submit"
+      >
+        <LogOut aria-hidden="true" className="h-4 w-4" />
+        {compact ? null : "Sign out"}
+      </button>
+    </form>
+  );
+}
 
 export default async function AdminProtectedLayout({ children }) {
   const session = await getAdminSession();
@@ -24,38 +42,65 @@ export default async function AdminProtectedLayout({ children }) {
   }
 
   return (
-    <div className="min-h-screen">
-      <header className="border-b border-border bg-surface/80">
-        <div className="mx-auto flex w-full max-w-[1120px] flex-wrap items-center gap-x-4 gap-y-2 px-5 py-2">
-          <Link
-            className="inline-flex min-h-11 items-center font-heading text-base font-bold text-text transition-colors hover:text-primary"
-            href="/admin/artworks"
-          >
-            Admin
-          </Link>
-
-          <AdminNav />
-
-          <div className="ml-auto flex items-center gap-2">
-            <span className="hidden max-w-56 truncate text-sm text-muted sm:inline">
-              {session.user.email}
-            </span>
-            <form action={signOutAction}>
-              <button
-                className="inline-flex min-h-11 items-center gap-2 rounded-pill border border-border bg-surface px-3 text-sm font-semibold text-text transition-colors hover:border-primary hover:text-primary"
-                type="submit"
-              >
-                <LogOut aria-hidden="true" className="h-4 w-4" />
-                Sign out
-              </button>
-            </form>
+    <div className="min-h-screen bg-bg">
+      <div className="mx-auto flex min-h-screen w-full max-w-[1440px]">
+        <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col border-r border-border bg-surface lg:flex">
+          <div className="border-b border-border p-6">
+            <Link
+              className="block transition-colors hover:text-primary"
+              href="/admin/artworks"
+            >
+              <span className="hud-label text-primary">{"// Control room"}</span>
+              <span className="mt-2 block font-heading text-xl font-bold normal-case">
+                Tuna (まぐろ寿司)
+              </span>
+            </Link>
           </div>
-        </div>
-      </header>
 
-      <main className="mx-auto w-full max-w-[1120px] px-5 py-10 sm:py-14">
-        {children}
-      </main>
+          <div className="flex-1 p-4">
+            <AdminNav />
+          </div>
+
+          <div className="border-t border-border p-4">
+            <p className="hud-label text-muted">Signed in as</p>
+            <p className="mt-2 truncate text-sm text-text">
+              {session.user.email}
+            </p>
+
+            <div className="mt-4">
+              <SignOutButton />
+            </div>
+
+            <Link
+              className="mt-2 inline-flex min-h-11 w-full items-center justify-between gap-2 px-3 text-sm font-semibold text-muted transition-colors hover:text-primary"
+              href="/"
+            >
+              Public site
+              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+          </div>
+        </aside>
+
+        <div className="min-w-0 flex-1">
+          <header className="sticky top-0 z-30 border-b border-border bg-bg/95 backdrop-blur lg:hidden">
+            <div className="flex min-h-16 items-center gap-2 px-4">
+              <Link
+                className="shrink-0 font-heading text-sm font-bold uppercase transition-colors hover:text-primary"
+                href="/admin/artworks"
+              >
+                Admin
+              </Link>
+              <span aria-hidden="true" className="h-5 w-px shrink-0 bg-border" />
+              <div className="min-w-0 flex-1">
+                <AdminNav orientation="horizontal" />
+              </div>
+              <SignOutButton compact />
+            </div>
+          </header>
+
+          <main className="px-4 py-8 sm:px-6 lg:px-10 lg:py-12">{children}</main>
+        </div>
+      </div>
     </div>
   );
 }

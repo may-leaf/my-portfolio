@@ -6,14 +6,17 @@ export default function StatusBadge({
   closedLabel = "Commissions closed",
 }) {
   return (
-    <Badge tone={open ? "primary" : "danger"}>
+    <Badge tone={open ? "soft" : "danger"}>
       <span
         aria-hidden="true"
         className={[
-          "h-1.5 w-1.5 rounded-full",
-          open ? "bg-primary-ink" : "bg-danger",
+          "h-1.5 w-1.5 shrink-0 rounded-full",
+          open ? "hud-pulse bg-primary" : "bg-danger",
         ].join(" ")}
       />
+      <span aria-hidden="true" className="opacity-60">
+        {"//"}
+      </span>
       {open ? openLabel : closedLabel}
     </Badge>
   );

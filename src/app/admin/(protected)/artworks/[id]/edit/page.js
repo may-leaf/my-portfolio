@@ -27,7 +27,7 @@ export default async function EditArtworkPage({ params }) {
       <div className="max-w-[720px]">
         <BackLink href="/admin/artworks">Back to artworks</BackLink>
         <p
-          className="mt-8 rounded-card border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
+          className="mt-8 border border-danger/40 bg-danger/10 px-4 py-3 text-sm text-danger"
           role="alert"
         >
           Could not load this artwork: {error}
@@ -44,24 +44,22 @@ export default async function EditArtworkPage({ params }) {
     <div className="max-w-[720px]">
       <BackLink href="/admin/artworks">Back to artworks</BackLink>
 
-      <p className="mt-8 text-xs font-semibold uppercase tracking-[0.12em] text-primary">
-        Admin
-      </p>
-      <h1 className="mt-2 font-heading text-[2.5rem] font-bold leading-tight sm:text-5xl">
+      <p className="mt-8 hud-label text-primary">{"// Admin / Artworks"}</p>
+      <h1 className="mt-2 font-heading text-[2rem] font-bold uppercase leading-tight sm:text-4xl">
         Edit artwork
       </h1>
 
-      <div className="mt-6 rounded-card border border-border bg-surface p-3">
+      <div className="mt-6 border border-border bg-surface p-3">
         {artwork.image_url ? (
           <Image
             alt={artwork.title}
-            className="max-h-72 w-auto rounded-image border border-border"
+            className="max-h-72 w-auto border border-border"
             height={artwork.height}
             src={artwork.image_url}
             width={artwork.width}
           />
         ) : (
-          <span className="flex h-48 items-center justify-center rounded-image bg-surface-alt">
+          <span className="flex h-48 items-center justify-center bg-surface-alt">
             <ImageIcon aria-hidden="true" className="h-8 w-8 text-muted" />
           </span>
         )}

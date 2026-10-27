@@ -1,16 +1,15 @@
 const tones = {
-  primary: "border-primary bg-primary text-primary-ink",
-  soft: "border-primary/25 bg-primary-soft text-primary",
-  neutral: "border-border bg-surface-alt text-muted",
-  danger: "border-danger/30 bg-danger/10 text-danger",
+  primary: "hud-chip--primary",
+  soft: "hud-chip--soft",
+  neutral: "",
+  danger: "hud-chip--danger",
 };
 
 export default function Badge({ tone = "neutral", className = "", children }) {
   return (
     <span
       className={[
-        "inline-flex min-h-7 items-center gap-2 rounded-pill border px-3 py-1",
-        "text-xs font-semibold uppercase tracking-[0.12em]",
+        "hud-chip min-h-7 px-3 py-1 font-mono text-xs uppercase tracking-[0.14em]",
         tones[tone],
         className,
       ]
