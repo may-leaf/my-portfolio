@@ -176,7 +176,7 @@ export default function HomeHero() {
 
             <h1
               aria-label={profile.name}
-              className="mt-7 font-heading text-[clamp(2.25rem,7.2vw,5.5rem)] font-bold leading-[0.95] tracking-[-0.01em] normal-case"
+              className="mt-7 font-heading text-[clamp(1.75rem,5.5vw,4rem)] font-bold leading-[0.95] tracking-[-0.01em] normal-case"
             >
               <span aria-hidden="true" className="block text-text">
                 <NameChars text={profile.name} />

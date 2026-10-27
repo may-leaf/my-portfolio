@@ -3,13 +3,13 @@ import HomeHero from "@/components/home/HomeHero";
 import LatestWork from "@/components/home/LatestWork";
 
 export const metadata = {
-  title: { absolute: "Tuna (まぐろ寿司) — Anime & Manga Illustrator" },
+  title: { absolute: "Tuna (まぐろ寿司)" },
   description:
-    "Portfolio and commission information for Tuna (まぐろ寿司), an anime and manga illustrator from Indonesia.",
+    "Portfolio and commission information for Tuna (まぐろ寿司).",
   openGraph: {
-    title: "Tuna (まぐろ寿司) — Anime & Manga Illustrator",
+    title: "Tuna (まぐろ寿司) ",
     description:
-      "Portfolio and commission information for Tuna (まぐろ寿司), an anime and manga illustrator from Indonesia.",
+      "Portfolio and commission information for Tuna (まぐろ寿司).",
     type: "website",
   },
 };

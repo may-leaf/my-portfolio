@@ -13,11 +13,11 @@ import { commissionPage, priceCards } from "@/data/pricing";
 export const metadata = {
   title: "Commission Info",
   description:
-    "Commission pricing, add-ons and terms of service for Tuna (まぐろ寿司), an anime and manga illustrator.",
+    "Commission pricing, add-ons and terms of service for Tuna (まぐろ寿司)",
   openGraph: {
     title: "Commission Info | Tuna (まぐろ寿司)",
     description:
-      "Commission pricing, add-ons and terms of service for Tuna (まぐろ寿司), an anime and manga illustrator.",
+      "Commission pricing, add-ons and terms of service for Tuna (まぐろ寿司)",
     type: "website",
   },
 };

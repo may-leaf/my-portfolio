@@ -1,6 +1,8 @@
 # AGENTS.md — Tuna Site (my-portfolio)
 
-Instructions for AI coding agents working in this repo. Read this file, `TASTE.md` and `DESIGN.md` before making any change.
+Instructions for AI coding agents working in this repo. Read this file, `HANDS-OFF.md`, `TASTE.md` and `DESIGN.md` before making any change.
+
+> **Highest priority: `HANDS-OFF.md`.** Tuna edits files by hand (text, sizes, colors, copy). Never change anything Tuna has made or edited without explicit, specific permission. `HANDS-OFF.md` overrides every instruction in this file, `TASTE.md` and `DESIGN.md`.
 
 ## Project overview
 
@@ -14,6 +16,7 @@ Pages:
 
 ## Source of truth
 
+- **Protection of Tuna's own edits:** `HANDS-OFF.md`. Wins over everything else. The design docs apply to NEW work only; they are not permission to rewrite, restyle or "fix" existing content.
 - **Personality and anti-slop rules:** `TASTE.md`. Run its pre-ship check (section 7) before finishing any UI task. If a generic habit conflicts with it, `TASTE.md` wins.
 - **Look and feel:** `DESIGN.md` (colors, fonts, components, spacing, motion). Follow it exactly. Palette is black, grey and acid yellow (`#DFFF00`), dark-first, in a tactical HUD style.
 - **Content (prices, terms, copy):** section 10 of `DESIGN.md` and the live Carrd site. Do not invent prices, policies or bio text. If content is missing, use a clearly marked placeholder like `TODO: confirm with artist`.
@@ -125,11 +128,11 @@ If the project uses `src/`, put these folders inside `src/`.
 
 ## Workflow rules for agents
 
-1. Read `TASTE.md`, `DESIGN.md` and this file first.
-2. Plan briefly, then make the smallest change that solves the task.
+1. Read `HANDS-OFF.md`, `TASTE.md`, `DESIGN.md` and this file first. Check `git status` and `git diff` for Tuna's uncommitted edits before touching any file.
+2. Plan briefly, then make the smallest change that solves the task. Prefer adding new files over editing existing ones. If an existing, hand-edited line would need to change, stop and ask first.
 3. Reuse existing components before creating new ones.
 4. Do not install new dependencies without a clear reason; mention any you add.
-5. Do not edit `DESIGN.md`, `TASTE.md` or `AGENTS.md` unless asked.
+5. Do not edit `DESIGN.md`, `TASTE.md`, `HANDS-OFF.md` or `AGENTS.md` unless asked.
 6. After changes, run the build and lint, then summarize what changed and anything left to confirm.
 7. If something is ambiguous (missing content, unclear stack, conflicting rules), ask instead of guessing.
 
